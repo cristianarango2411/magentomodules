@@ -1,17 +1,70 @@
-<h1>ESTA VAINA FUNCIONA </h1>
+<h1>Comienzo de PHTML</h1>
+
+
+
+
+<form class="form" id="my-form" method="post" data-mage-init='{"validation":{"rules": {"field-4": {"required":true}}}}'>
+    <fieldset class="fieldset">
+        <div class="field name required">
+            <label class="label" for="field-1"><span>Low Range/span></label>
+            <div class="control">
+                <input name="field-1" id="field-1" title="Field 1" value=""  class="input-text" type="text" data-validate='{"required":true, "url": true}'/>
+            </div>
+        </div>
+        <div class="field name required">
+            <label class="label" for="field-2"><span>High Range</span></label>
+            <div class="control">
+                <input name="field-2" id="field-2" title="Field 2" value="" class="input-text" type="text" required="true"/>
+            </div>
+        </div>
+        <div class="field name required">
+            <label class="label" for="field-3"><span>Sort By Price</span></label>
+            <field name="sort_by_price" formElement="select">
+                <formElements>
+                    <select>
+                        <settings>
+                            <options>
+                                <option name="1" xsi:type="array">
+                                    <item name="value" xsi:type="string">1</item>
+                                    <item name="label" xsi:type="string">Ascending</item>
+                                </option>
+                                <option name="2" xsi:type="array">
+                                    <item name="value" xsi:type="string">2</item>
+                                    <item name="label" xsi:type="string">Descending</item>
+                                </option>
+                            </options>
+                            <caption translate="true">-- Please Select --</caption>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="Submit" class="action submit primary">
+                <span>Submit</span>
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+
 <?php 
 
 
-$productCollection = $block->getProductCollection();
+/*$productCollection = $block->getProductCollection(10);
 foreach ($productCollection as $product) {
     print_r($product->getData());     
-    echo "<br>";
-}
+    echo "<br><br><br>";
+}*/
 
 
 // Add your tab content here.
 //echo "Products in Range tab content goes here";
 
-$foo="esta es la variable php de prueba";
+$foo="v1.0";
 ?>
-<h2>ESTA VAINA FUNCIONA  <?=$foo?></h2>
+<h2>Fin PHTML <?=$foo?></h2>

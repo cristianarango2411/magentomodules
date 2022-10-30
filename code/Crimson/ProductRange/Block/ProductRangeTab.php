@@ -15,15 +15,15 @@ class ProductRangeTab extends \Magento\Framework\View\Element\Template
         parent::__construct($context, $data);
     }
     
-    public function getProductCollection()
+    /*public function getProductCollection()
     {
         $collection = $this->_productCollectionFactory->create();
         $collection->addAttributeToSelect('*');
         $collection->setPageSize(3); // fetching only 3 products
         return $collection;
-    }
+    }*/
     
-   /* public function getProductCollection($pageSize)
+    public function getProductCollection($pageSize)
     {
         $collection = $this->_productCollectionFactory->create();
         $collection->addAttributeToSelect('*');
@@ -31,7 +31,7 @@ class ProductRangeTab extends \Magento\Framework\View\Element\Template
         return $collection->clear()
         ->setPageSize($pageSize)
         ->load();
-    }*/
+    }
     
     public function getProductCollectionByCategories($ids)
     {
