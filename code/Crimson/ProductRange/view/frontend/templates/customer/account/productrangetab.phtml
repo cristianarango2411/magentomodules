@@ -1,6 +1,14 @@
 <h1>ESTA VAINA FUNCIONA </h1>
 <?php 
 
+
+$productCollection = $block->getProductCollection();
+foreach ($productCollection as $product) {
+    print_r($product->getData());     
+    echo "<br>";
+}
+
+
 // Add your tab content here.
 //echo "Products in Range tab content goes here";
 

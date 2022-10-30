@@ -7,8 +7,8 @@
                 <argument translate="true" name="title" xsi:type="string">Products in Range</argument> 
             </action> 
         </referenceBlock> 
-        <referenceContainer name="content"> 
-            <block class="Magento\Framework\View\Element\Template" name="productrange-tab" template="Crimson_ProductRange::customer/account/productrangetab.phtml" />
+        <referenceContainer name="content">
+            <block class="Crimson\ProductRange\Block\ProductRangeTab" name="productrange-tab" template="Crimson_ProductRange::customer/account/productrangetab.phtml" />
         </referenceContainer> 
     </body> 
 </page>
