@@ -2,9 +2,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="customer_account_navigation">
-            <block class="Magento\Framework\View\Element\Html\Link\Current" name="custom-tab-link">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="productrange-tab-link">
                 <arguments>
-                    <argument name="path" xsi:type="string">productrange/customer/index</argument>
+                    <argument name="path" xsi:type="string">productrangetab/customer/index</argument>
                     <argument name="label" xsi:type="string">Products in Range</argument>
                 </arguments>
             </block>

@@ -8,7 +8,7 @@
             </action> 
         </referenceBlock> 
         <referenceContainer name="content"> 
-            <block class="Magento\Framework\View\Element\Template" name="custom-tab" template="Crimson_ProdcuctRange::customer/account/productrangetab.phtml" />
+            <block class="Magento\Framework\View\Element\Template" name="productrange-tab" template="Crimson_ProductRange::customer/account/productrangetab.phtml" />
         </referenceContainer> 
     </body> 
 </page>
