@@ -6,13 +6,16 @@ use Magento\Framework\Controller\ResultFactory;
 class Range extends \Magento\Framework\App\Action\Action 
 {
     protected $_productCollectionFactory;
+    protected $_storeManager;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,        
-        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+        \Magento\Store\Model\StoreManagerInterface $storemanager
     )
     {    
-        $this->_productCollectionFactory = $productCollectionFactory;    
+        $this->_productCollectionFactory = $productCollectionFactory;
+        $this->_storeManager =  $storemanager;
         parent::__construct($context);
     }
 
@@ -21,20 +24,28 @@ class Range extends \Magento\Framework\App\Action\Action
         $params=$this->getRequest()->getParams();
         if(array_key_exists('lowRange',$params) && array_key_exists('highRange',$params) && array_key_exists('sortByPrice',$params))
         {
+            $store = $this->_storeManager->getStore();
             $lowRange = number_format((float)$params['lowRange'], 2, '.', '');
             $highRange = number_format((float)$params['highRange'], 2, '.', '');
-            $sortByPrice = $params['sortByPrice']=='1'?'asc':'desc';
+            $sortByPrice = $params['sortByPrice']=='1 Ascending'?'asc':'desc';
 
             $collection=$this->_productCollectionFactory->create();
+            //$collection->addAttributeToSelect('*');
             $collection->addAttributeToSelect('*');
-            $productCollection=$collection->clear()
-            ->addAttributeToFilter( 'price' , array('gt' => $lowRange, 'lt' => $highRange) )
-            ->setOrder('price', $sortByPrice )
-            ->setPageSize(10)
-            ->load();
-            
+            $collection->clear()
+            ->addFieldToFilter('price',array('gteq'=>$lowRange))
+            ->addFieldToFilter('price',array('lteq'=>$highRange))
+            ->addAttributeToSort('price', $sortByPrice );
+            $collection->getSelect()->limit(10);
+
+            $productCollection=$collection;
+
             foreach ($productCollection as $product) {
-                $productsArray[] = $product->getData(); 
+                $p = $product->getData();   
+                $p['url'] = $product->getProductUrl();
+                $p['image'] = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' .$product->getImage();
+                $p['final_price']=number_format($p['final_price'], 2, ',', ' ');
+                $productsArray[] = $p;
             }
             $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
 
