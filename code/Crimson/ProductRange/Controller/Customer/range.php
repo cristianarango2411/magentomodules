@@ -27,16 +27,16 @@ class Range extends \Magento\Framework\App\Action\Action
             $store = $this->_storeManager->getStore();
             $lowRange = number_format((float)$params['lowRange'], 2, '.', '');
             $highRange = number_format((float)$params['highRange'], 2, '.', '');
-            $sortByPrice = $params['sortByPrice']=='1 Ascending'?'asc':'desc';
+            $sortByPrice = $params['sortByPrice']=='1 Ascending'?'ASC':'DESC';
 
             $collection=$this->_productCollectionFactory->create();
-            //$collection->addAttributeToSelect('*');
             $collection->addAttributeToSelect('*');
             $collection->clear()
-            ->addFieldToFilter('price',array('gteq'=>$lowRange))
-            ->addFieldToFilter('price',array('lteq'=>$highRange))
-            ->addAttributeToSort('price', $sortByPrice );
-            $collection->getSelect()->limit(10);
+            ->addPriceDataFieldFilter('%s >= %s', ['final_price', $lowRange])
+            ->addPriceDataFieldFilter('%s <= %s', ['final_price', $highRange])
+            ->addFinalPrice();
+            $sort='.final_price '.$sortByPrice;
+            $collection->getSelect()->order( $sort )->limit(10);
 
             $productCollection=$collection;
 
