@@ -39,10 +39,6 @@
                                 console.log(html);  
                             });
                             
-
-
-
-
                         },
                         error: function (xhr, status, errorThrown) {
                             console.log('Error happens. Try again.');
@@ -60,13 +56,13 @@
         <div class="field name required">
             <label class="label" for="lowRange"><span>Low Range</span></label>
             <div class="control">
-                <input name="lowRange" id="lowRange" title="Low Range" value=""  class="input-text" type="number" data-validate='{"required":true, "number": true}'/>
+                <input name="lowRange" id="lowRange" title="Low Range" value=""  class="input-text" type="number" data-validate='{"required-number":true, "validate-not-negative-number": true}'/>
             </div>
         </div>
         <div class="field name required">
             <label class="label" for="highRange"><span>High Range</span></label>
             <div class="control">
-                <input name="highRange" id="highRange" title="High Range" value="" class="input-text" type="number" data-validate='{"required":true, "number": true}'/>
+                <input name="highRange" id="highRange" title="High Range" value="" class="input-text" type="number" data-validate='{"required-number":true, "greater-than-equals-to": "#lowRange"}'/>
             </div>
         </div>
         <div class="field name required">
