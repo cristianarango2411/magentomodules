@@ -7,7 +7,7 @@
 </style>
 
 <script type="text/javascript">
-    require(["jquery"],function($) {
+    /*require(["jquery"],function($) {
         $(document).ready(function() {
             $('#productsRangeForm').submit(function(event) {
                 event.preventDefault();
@@ -47,12 +47,20 @@
                 }
             });
         });
-    });
+    });*/
+</script>
+<script>// <![CDATA[
+    require([
+        'jquery',
+        'productRangeAjax'
+    ], function ($, script) {});
+    // ]]>
 </script>
 
 
 <form class="form" id="productsRangeForm" method="post" data-mage-init='{"validation":{"rules": {"field-4": {"required":true}}}}'>
     <fieldset class="fieldset">
+        <input id="url" value="<?php echo $this->getUrl().'productrangetab/customer/range/'?>" type="hidden">
         <div class="field name required">
             <label class="label" for="lowRange"><span>Low Range</span></label>
             <div class="control">
@@ -66,7 +74,7 @@
             </div>
         </div>
         <div class="field name required">
-            <label class="label" for="field-3"><span>Sort By Price</span></label>
+            <label class="label" for="sortByPrice"><span>Sort By Price</span></label>
             <field name="sortByPrice" id="sortByPrice" formElement="select">
                 <formElements>
                     <select>

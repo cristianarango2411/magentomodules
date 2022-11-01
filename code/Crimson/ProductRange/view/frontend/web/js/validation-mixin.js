@@ -9,7 +9,7 @@ define(['jquery'], function($) {
             var lowRange = $('#lowRange').val();
             return parseFloat(lowRange)*5 >= parseFloat(value);
         },
-        $.mage.__("the highRange can't be 5x grater than lowRange")
+        $.mage.__("The highRange can't be 5x greater than lowRange")
       )
       return targetWidget;
     }

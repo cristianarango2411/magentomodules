@@ -1,9 +1,9 @@
-require(["jquery"],function($) {
+require(["jquery"],function($, config) {
     $(document).ready(function() {
         $('#productsRangeForm').submit(function(event) {
             event.preventDefault();
             if( $(this).valid()){
-                var customurl = "<?php echo $this->getUrl().'productrangetab/customer/range/'?>";
+                var customurl = $("#url").val();
                 $.ajax({
                     url: customurl,
                     type: 'POST',
@@ -16,7 +16,7 @@ require(["jquery"],function($) {
                     complete: function(response) {             
                         productList = response.responseJSON; 
                         $('#productList .product-items').empty();//delete previous products
-                        productList.forEach(function(product, index, arr){
+                        for(const product of productList){
                             html='<div class="product-item-info" id="product-item-info_334" data-container="product-grid"><span class="product-image-container product-image-container-334" style="width: 240px;"><span class="product-image-wrapper" style="padding-bottom: 125%;">';
                             html=html+'<img class="product-image-photo" src="';
                             html=html+product.image+'" loading="lazy" width="240" height="300" alt="Lando Gym Jacket"></span>';
@@ -28,7 +28,7 @@ require(["jquery"],function($) {
                             html=html+'$'+product.final_price+'</span></span></span></span></div></div></div>'
                             $('#productList .product-items').append(html);
                             console.log(html);  
-                        });
+                        };
                         
                     },
                     error: function (xhr, status, errorThrown) {

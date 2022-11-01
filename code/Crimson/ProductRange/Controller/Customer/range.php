@@ -15,7 +15,7 @@ class Range extends \Magento\Framework\App\Action\Action
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
         \Magento\Store\Model\StoreManagerInterface $storemanager,
         \Magento\Catalog\Model\Product\Attribute\Source\Status $productStatus,
-        \Magento\Catalog\Model\Product\Visibility $productVisibility,
+        \Magento\Catalog\Model\Product\Visibility $productVisibility
     )
     {    
         $this->_productCollectionFactory = $productCollectionFactory;
@@ -35,14 +35,22 @@ class Range extends \Magento\Framework\App\Action\Action
             $highRange = number_format((float)$params['highRange'], 2, '.', '');
             $sortByPrice = $params['sortByPrice']=='1 Ascending'?'ASC':'DESC';
 
-            $productCollection = $this->getProductCollection($lowRange, $highRange, $sortByPrice);
+            if($this->valid($lowRange,$highRange)){
+                $productCollection = $this->getProductCollection($lowRange, $highRange, $sortByPrice);
             
-            $response=$this->getJsontoResponse($productCollection,$store);
-            
-            return $response; 
+                $response=$this->getJsontoResponse($productCollection,$store);
+                
+                return $response; 
+            }
         }
     }
 
+    private function valid($lowRange,$highRange){
+        if($lowRange<0 || $highRange<$lowRange || $highRange>($lowRange*5))
+            return false;
+        else
+            return true;
+    }
 
     private function getProductCollection($lowRange, $highRange, $sortByPrice)
     {
