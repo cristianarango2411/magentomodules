@@ -11,7 +11,7 @@
         $(document).ready(function() {
             $('#productsRangeForm').submit(function(event) {
                 event.preventDefault();
-                if( true){//!$(this).attr( "novalidate" )==='novalidate'){
+                if( $(this).valid()){//!$(this).attr( "novalidate" )==='novalidate'){
                     var customurl = "<?php echo $this->getUrl().'productrangetab/customer/range/'?>";
                     $.ajax({
                         url: customurl,
