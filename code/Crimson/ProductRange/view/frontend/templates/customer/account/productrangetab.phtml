@@ -11,7 +11,7 @@
         $(document).ready(function() {
             $('#productsRangeForm').submit(function(event) {
                 event.preventDefault();
-                if( $(this).valid()){//!$(this).attr( "novalidate" )==='novalidate'){
+                if( $(this).valid()){
                     var customurl = "<?php echo $this->getUrl().'productrangetab/customer/range/'?>";
                     $.ajax({
                         url: customurl,
@@ -62,7 +62,7 @@
         <div class="field name required">
             <label class="label" for="highRange"><span>High Range</span></label>
             <div class="control">
-                <input name="highRange" id="highRange" title="High Range" value="" class="input-text" type="number" data-validate='{"required-number":true, "greater-than-equals-to": "#lowRange"}'/>
+                <input name="highRange" id="highRange" title="High Range" value="" class="input-text" type="number" data-validate='{"required-number":true, "greater-than-equals-to": "#lowRange", "validate-five-x":"#lowRange"}'/>
             </div>
         </div>
         <div class="field name required">

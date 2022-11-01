@@ -6,7 +6,8 @@ define(['jquery'], function($) {
       $.validator.addMethod(
         'validate-five-x',
         function(value, element) {
-          return parseInt(value)*10 > 10;
+            var lowRange = $('#lowRange').val();
+            return parseFloat(lowRange)*5 >= parseFloat(value);
         },
         $.mage.__("the highRange can't be 5x grater than lowRange")
       )
